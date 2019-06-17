@@ -1,0 +1,109 @@
+<div class="container-fluid  f-up f-FiraGOr">
+
+    <div class=" c-w text-center p-3  d-flex ">
+         <a class=" font-weight-bold pointer m-auto" (click)="makeTrueAddForm()">კლიენტის დამატება <i class="fas fa-user-plus c-main"></i></a>
+    </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <app-search (searchString)="searchClient($event)"></app-search>
+    </div>
+    
+  </div>
+  <div class="row mt-4">
+    <table class="table c-w f-up f-FiraGOr fs-12 mb-0 mt-4">
+      <thead class="bg-main c-w opacity-09">
+      <tr class="text-center">
+        <th  (click)="sort('clientNum')" scope="col" class="p-3" >კლიენტის ნომერი <i class="fas fa-sort-down"></i></th>
+        <th  (click)="sort('firstName')" scope="col" class="p-3" >სახელი <i class="fas fa-sort-down"></i></th>
+        <th  (click)="sort('lastName')" scope="col" class="p-3">გვარი <i class="fas fa-sort-down"></i></th>
+        <th  (click)="sort('gender')" scope="col" class="p-3">სქესი <i class="fas fa-sort-down"></i></th>
+        <th  (click)="sort('personalId')" scope="col" class="p-3">პირადი ნომერი <i class="fas fa-sort-down"></i></th>
+        <th  (click)="sort('mobile')" scope="col" class="p-3">მობილური <i class="fas fa-sort-down"></i></th>
+        <th scope="col" class="p-3">იურიდიული მისამართი <br>
+          ქვეყანა / ქალაქი / ქუჩა
+        </th>
+        <th scope="col" class="p-3">ფიზიკური მისამართი <br>
+            ქვეყანა / ქალაქი / ქუჩა
+        </th>
+        <th scope="col" class="p-3">ფოტოსურათი</th>
+        <th scope="col" class="p-3">მართვა</th>
+      </tr>
+      </thead>
+      <tbody class="text-center bg-w text-dark opacity-09">
+      <tr *ngFor="let client of clients" class="font-weight-bold hover-bg-w-opacity-08">
+        <td  class="pt-4 text-center">
+          {{client.id}}
+        </td>
+        <td class="pt-4 text-center">
+         {{client.firstName}}
+        </td>
+        <td class="pt-4 text-center">
+          {{client.lastName}}
+         </td>
+         <td class="pt-4 text-center">
+          {{client.gender}}
+         </td>
+         <td class="pt-4 text-center">
+          {{client.personalId}}
+         </td>
+         <td class="pt-4 text-center">
+          {{client.mobile}}
+         </td>
+         <td class="pt-4 text-center">
+          {{client.legalAddress.country + ' /' }} 
+          {{client.legalAddress.city + '/ ' }} 
+          {{client.legalAddress.street}}
+         </td>
+         <td *ngIf="client.physicalAddress.street; else notphysicalAddress" 
+         class="pt-4 text-center">          
+            {{client.physicalAddress?.country + ' /'}} 
+            {{client.physicalAddress?.city + '/ '}} 
+            {{client.physicalAddress?.street}}
+          </td>
+          <ng-template #notphysicalAddress>
+              <td  class="pt-4 text-center">იდენტურია</td>
+           </ng-template>
+
+        <td class="text-center"><img [src]="client.image" alt="" style="width: 50px; border-radius: 10%"></td>
+        <td class="pt-4 fs-16">
+              <i class="fas fa-edit hover-c-main-light pointer" (click)="edit(client)"></i>
+              <i class="fas fa-trash pl-2 hover-c-main-light pointer" (click)="deleteClient(client)"></i>
+              <i class="fas fa-money-check-alt pl-2 hover-c-main-light pointer" (click)="addAccount(client)"></i>
+        </td>
+      </tr>
+      </tbody>
+      
+    </table>
+    <div *ngIf="statusModal" class="alert alert-success position-absolute top-0 left-42  mb-0">
+      <span class="text-center font-weight-bold">კლიენტი წარმატებით წაიშალა</span> 
+    </div>
+    <nav class="w-100  position-absolute bottom-0 right-0 z-1">
+        <ul class="pagination justify-content-end font-weight-bold mb-0">
+          <li *ngIf="pageNum > 1" class="page-item">
+            <button class="page-link bg-none border-0 c-w"  (click)="previousPage()">უკან</button>
+          </li>
+          <li class="page-item">
+            <a *ngIf="pageNum > 1" class="page-link bg-none c-w border-0" (click)="nextPage()">წინ</a>
+          </li>
+        </ul>
+      </nav>
+  </div>
+</div>
+
+
+
+
+
+
+<app-modal-window
+                   (isModalAction)="modalAction($event)"
+                   (isDeleteConfed)="dltClient($event)"
+                   [isAddModal]="isAddModal"
+                   [isAccountModal]="isAccountModal"
+                   [edited]="isEdited"
+                   [selectedClient]="selectedClient"
+                   [deleteConf]="makeDeleteConfirm">
+</app-modal-window>
+
+
+

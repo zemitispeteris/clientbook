@@ -1,0 +1,79 @@
+$grid-breakpoints: (
+  s: 576px,
+  m: 768px,
+  l: 992px,
+  x: 1200px
+);
+
+$colors: (
+  c-r: red,
+  c-p: #c2185b,
+  c-pr: purple,
+  c-i: indigo,
+  c-b: blue,
+  c-g: green,
+  c-yellow: #fff12b,
+  c-w: $white,
+  c-main: #00a3e0
+);
+
+$bgColor: (
+  bg-r: red,
+  bg-p: pink,
+  bg-pr: purple,
+  bg-i: indigo,
+  bg-b: blue,
+  bg-g: green,
+  bg-yellow: #fff12b,
+  bg-w: white,
+  bg-main: #00a3e0
+);
+
+$pixels: (
+  a: auto,
+  5: 5px,
+  10: 10px,
+  15: 15px,
+  20: 20px,
+  25: 25px,
+  30: 30px,
+  35: 35px,
+  40: 40px,
+  45: 45px,
+  50: 50px,
+  55: 55px,
+  60: 60px,
+  65: 65px,
+  70: 70px,
+  75: 75px,
+  80: 80px,
+  85: 85px,
+  90: 90px,
+  95: 95px,
+  100: 100px,
+);
+
+$percents: (
+  a: auto,
+  5: 5%,
+  10: 10%,
+  15: 15%,
+  20: 20%,
+  25: 25%,
+  30: 30%,
+  35: 35%,
+  40: 40%,
+  45: 45%,
+  50: 50%,
+  55: 55%,
+  60: 60%,
+  65: 65%,
+  70: 70%,
+  75: 75%,
+  80: 80%,
+  85: 85%,
+  90: 90%,
+  95: 95%,
+  100: 100%,
+);
+

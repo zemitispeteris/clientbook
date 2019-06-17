@@ -1,0 +1,104 @@
+
+<form [formGroup]="accountForm" (ngSubmit)="addAccount()">
+    <div *ngFor="let group of accountForm.controls">
+        <div [formGroup]="group">
+          <!--see that it's the same that write
+            <div [formGroup]="group.get('account')">
+              -->
+ <div formGroupName="account">
+  <div class="row ">
+    <div class="col-6 border-right border-warning d-flex  justify-content-center">
+      <span class="position-absolute top-0 fs-14 c-main font-weight-bold">მიმდინარე ანგარიშები</span>
+    
+      <table class="table table-borderless mt-4 text-center fs-14">
+        <thead>
+          <tr class="text-secondary fs-12">
+            <th scope="col">ვალუტა / ნომერი / ტიპი / სტატუსი</th>
+          </tr>
+        </thead>
+        <tbody class="c-main">
+          <td *ngFor="let acc of selectedClient.accounts">
+          {{acc | json}}
+          </td>
+            <!--   <td>{{account.accountType}}</td>
+            <td>{{account.status}}</td>    -->
+        </tbody>
+      </table>
+      <!-- <div *ngIf="account" class="position-absolute top-50">
+        <span  class="c-yellow fs-18">ანგარიში არ არსებობს</span>
+      </div> -->
+    </div>
+    <div class="col-6">
+      <span class="text-center fs-14 c-main font-weight-bold">ახალი ანგარიშის დამატება</span>
+      <div class="col-12">
+        <div class="mb-3">
+     
+          <div class="form-group fs-13">
+            <label for="accountNumber">ანგარიშის ნომერი</label>
+            <input type="text" formControlName="accountNum" class="form-control fs-11" id="accountNumber" placeholder="შეიყვანე ანგარიშის ნომ."
+                   />
+          </div>
+        </div>
+      </div>
+       <div class="col-12">
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="accountType" class="fs-13">ანგარიშის ტიპი</label>
+            <select formControlName="accountType" id="accountType" class="custom-select fs-11" required>
+              <option value="">აირჩიე ანგარიშის ტიპი</option>
+              <option value="მიმდინარე">მიმდინარე</option>
+              <option value="შემნახველი">შემნახველი</option>
+              <option value="დაგროვებითი">დაგროვებითი</option>
+            </select>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-12">
+        <div class="mb-3">
+          <div  class="form-group">
+            <label for="currency" class="fs-13">ვალუტა</label>
+            <select formControlName="currency" id="currency" class="custom-select fs-11" required>
+              <option value="">აირჩიე ვალუტა</option>
+              <option value="GEL">GEL</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="RUB">RUB</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="status" class="fs-13">სტატუსი</label>
+            <select formControlName="status" id="status" class="custom-select fs-11" required>
+              <option value="">აირჩიე სტატუსი</option>
+              <option value="აქტიური">აქტიური</option>
+              <option value="დახურული">დახურული</option>
+            </select>
+          </div>
+        </div>
+      </div> 
+
+      <div class="form-group d-flex justify-content-center">
+        <button type="button" class="btn btn-secondary btn-sm mr-2" (click)="closeAddForm()" >გათიშვა</button>
+        <button  type="submit"  class="btn bg-main c-w btn-sm ">შენახვა</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+</form>
+
+
+
+<!-- 
+  <form [formGroup]="AccountForm" (ngSubmit)="addAccount()"> 
+    <input [formControl]="AccountForm.at(0).get('account').get('accountNum')">
+    <input [formControl]="AccountForm.at(0).get('account').get('currency')">
+    <input [formControl]="AccountForm.at(0).get('account').get('status')">
+    <button  type="submit"  class="btn bg-main c-w btn-sm ">save</button>
+  </form> -->
+

@@ -1,0 +1,161 @@
+
+<form [formGroup]="ClientForm" (ngSubmit)="addClient()">
+  <div class="row pt-3">
+    <div class="col-6">
+      <div class="mb-3">
+        <div class="form-group fs-13">
+          <label for="firstName">სახელი</label>
+          <input type="text" formControlName="firstName" class="form-control fs-11" id="firstName" placeholder="ჩაწერე სახელი"
+                 [ngClass]="{'is-invalid':f.firstName.errors && (f.firstName.touched || f.firstName.dirty)}"/>
+          <div class="invalid-feedback">
+            <div *ngIf="f.firstName.errors?.required">სახელი სავალდებულოა</div>
+            <div *ngIf="f.firstName.errors?.minlength">მინიმუმ 2 და მაქსიმუმ 50 სიმბოლო</div>
+            <div *ngIf="f.firstName.errors?.maxlength">მინიმუმ 2 და მაქსიმუმ 50 სიმბოლო</div>
+            <div *ngIf="f.firstName.errors?.validLang">ქართულად ან ინგლისურად</div>
+           </div>  
+           </div>   
+        </div>
+      </div>
+
+    <div class="col-6">
+      <div class="mb-3">
+        <div  class="form-group  fs-13">
+          <label for="lastName">გვარი</label>
+          <input type="text" formControlName="lastName" class="form-control fs-11" id="lastName" placeholder="ჩაწერე გვარი"
+                 [ngClass]="{'is-invalid':f.lastName.errors && (f.lastName.touched || f.lastName.dirty)}"/>
+          <div class="invalid-feedback">
+            <div *ngIf="f.lastName.errors?.required">გვარი სავალდებულოა</div>
+            <div *ngIf="f.lastName.errors?.minlength">მინიმუმ 2 და მაქსიმუმ 50 სიმბოლო</div>
+            <div *ngIf="f.lastName.errors?.maxlength">მინიმუმ 2 და მაქსიმუმ 50 სიმბოლო</div>
+            <div *ngIf="f.lastName.errors?.validLang">ქართულად ან ინგლისურად</div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="mb-3">
+        <div class="form-group fs-13">
+          <label for="gender" class="fs-13">სქესი</label>
+          <select formControlName="gender" id="gender" class="custom-select fs-11"
+          [ngClass]="{'is-invalid':f.gender.errors && (f.gender.touched || f.gender.dirty)}">
+            <option value="">აირჩიე სქესი</option>
+            <option value="კაცი">კაცი</option>
+            <option value="ქალი">ქალი</option>
+          </select>
+          <div class="invalid-feedback fs-11">
+            <div *ngIf="f.gender.errors?.required">სქესის არჩევა  სავალდებულოა</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="mb-3">
+        <div class="form-group">
+          <label for="personalId" class="fs-13">პირადი ნომერი</label>
+          <input type="text" formControlName="personalId" class="form-control fs-11" id="personalId" placeholder="ჩაწერე პირადი ნომერი"
+          [ngClass]="{'is-invalid':f.personalId.errors && (f.personalId.touched || f.personalId.dirty)}"/>
+          <!-- <div class="invalid-feedback fs-11">
+            <div *ngIf="f.personalId.errors?.required">პირადი ნომერი სავალდებულოა</div>
+            <div *ngIf="f.personalId.errors?.maxlength">პირადი ნომერი უნდა შედგებოდეს 11 სიმბოლოსგან</div>
+            <div *ngIf="f.personalId.errors?.minlength">პირადი ნომერი უნდა შედგებოდეს 11 სიმბოლოსგან</div>
+            <div *ngIf="f.personalId.errors?.pattern">შეიყვანეთ მხოლოდ რიცხვები</div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="mb-3">
+        <div class="form-group" formGroupName="legalAddress">
+          <small class="text-muted">იურიდიული მისამართი</small><br>
+          <label for="Lcountry" class="fs-13  ">ქვეყანა</label>
+          <input type="text" formControlName="country" class="form-control fs-11" id="Lcountry" placeholder="ქვეყანა"
+           [ngClass]="{'is-invalid':f.legalAddress.controls.country.errors && (f.legalAddress.controls.country.touched || f.legalAddress.controls.country.dirty)}"/>
+           <div class="invalid-feedback fs-11">
+              <div *ngIf="f.legalAddress.controls.country.errors?.required">პირადი ნომერი სავალდებულოა</div>
+            </div>
+          <label for="Lcity" class="fs-13 mt-2 ">ქალაქი</label>
+          <input type="text" formControlName="city" class="form-control fs-11  " id="Lcity" placeholder="ქალაქი"    
+           [ngClass]="{'is-invalid':f.legalAddress.controls.city.errors && (f.legalAddress.controls.city.touched || f.legalAddress.controls.city.dirty)}"/>
+          <div class="invalid-feedback fs-11">
+             <div *ngIf="f.legalAddress.controls.city.errors?.required">პირადი ნომერი სავალდებულოა</div>
+           </div>
+          <label for="Lstreet"  class="fs-13 mt-2">მისამართი</label>
+          <input type="text" formControlName="street" class="form-control fs-11 " id="Lstreet" placeholder="იურიდიული მისამართი"
+          [ngClass]="{'is-invalid':f.legalAddress.controls.street.errors && (f.legalAddress.controls.street.touched || f.legalAddress.controls.city.dirty)}"/>
+          <div class="invalid-feedback fs-11">
+             <div *ngIf="f.legalAddress.controls.street.errors?.required">პირადი ნომერი სავალდებულოა</div>
+           </div>
+          <div class="custom-control custom-checkbox mb-3 ">
+            <input  type="checkbox" class="custom-control-input" id="isPhysical"  (click)="catchPhysicalBox($event)" >
+            <label class="custom-control-label fs-11" for="isPhysical">ფიზიკური მისამართი განსხვავდება იურიდიულისაგან</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isPhysicalChecked" class="col-6">
+      <div class="mb-3">
+        <div class="form-group" formGroupName="physicalAddress">
+          <small class="text-muted">ფიზიკური მისამართი</small><br>
+          <label for="Pcountry" class="fs-13">ქვეყანა</label>
+          <input type="text" formControlName="country" class="form-control fs-11" id="Pcountry" placeholder="ქვეყანა" 
+          [ngClass]="{'is-invalid':f.physicalAddress.controls.country.errors && (f.physicalAddress.controls.country.touched || f.physicalAddress.controls.country.dirty)}"/>
+          <div class="invalid-feedback fs-11">
+             <div *ngIf="f.physicalAddress.controls.street.errors?.required ">ფიზიკური მისამართი სავალდებულოა</div>
+           </div>
+          <label for="Pcity" class="fs-13 mt-2">ქალაქი</label>
+          <input type="text"  formControlName="city" class="form-control fs-11" id="Pcity" placeholder="ქალაქი"
+          [ngClass]="{'is-invalid':f.physicalAddress.controls.city.errors && (f.physicalAddress.controls.city.touched || f.physicalAddress.controls.city.dirty)}"/>
+          <div class="invalid-feedback fs-11">
+             <div *ngIf="f.physicalAddress.controls.city.errors?.required ">ქალაქი სავალდებულოა</div>
+           </div>
+          <label for="Pstreet"  class="fs-13 mt-2">მისამართი</label>
+          <input type="text" formControlName="street" class="form-control fs-11" id="Pstreet" placeholder="ფიზიკური მისამართი" 
+          [ngClass]="{'is-invalid':f.physicalAddress.controls.street.errors  && (f.physicalAddress.controls.street.touched || f.physicalAddress.controls.street.dirty)}"/>
+          <div class="invalid-feedback fs-11">
+             <div *ngIf="f.physicalAddress.controls.street.errors?.required ">მისამართი სავალდებულოა</div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div  class="col-6">
+      <div class="mb-3">
+        <div class="form-group">
+          <label for="mobile"  class="fs-13">მობიოური</label>
+          <input type="text" formControlName="mobile" class="form-control fs-11" id="mobile" placeholder="ჩაწერე მობილური" 
+          [ngClass]="{'is-invalid':f.mobile.errors && (f.mobile.touched || f.mobile.dirty)}"/>
+          <div class="invalid-feedback fs-11">
+            <div *ngIf="f.mobile.errors?.required">მობიოური ნომერი სავალდებულოა</div>
+            <div *ngIf="f.mobile.errors?.pattern">იწყებოდეს 5-ით მაქს. 9 რიცხვი</div>
+          </div>
+          <small class="form-text text-muted">მაგ: 555123456</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="mb-3">
+        <div class="form-group">
+          <app-file-uploader (imageData)='getImageData($event)' ></app-file-uploader>
+      </div>
+    </div>
+  </div>
+  </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <div class="form-group">
+          <button type="button" class="btn btn-secondary btn-sm mr-2" (click)="closeAddForm()">გათიშვა</button>
+          <button *ngIf="!edited" type="submit" [disabled]="!ClientForm.valid" class="btn bg-main c-w btn-sm ">შენახვა</button>
+          <button *ngIf="edited" type="button" [disabled]="!ClientForm.valid" class="btn bg-main c-w btn-sm " (click)="editClient()">რედაქტირება</button>
+        </div>
+      </div>
+    </div>
+</form>
+

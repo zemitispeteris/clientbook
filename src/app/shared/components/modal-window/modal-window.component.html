@@ -1,0 +1,35 @@
+
+ <div  *ngIf="isAddModal" class="modal fade show d-block f-up f-FiraGOr" style="padding-right: 17px;">
+  <div class="modal-dialog modal-dialog-centered w-35 c-main">
+    <div class="modal-content border-dashed-4px-main">
+      <div class="modal-body">
+        <app-client-form  [selectedClient]="selectedClient" [edited]="edited" (isModalAddFormEmit)="toggleModalAdd($event)"></app-client-form>
+    </div>
+  </div>
+</div>
+</div>
+ <div  *ngIf="isAccountModal" class="modal fade show d-block f-up f-FiraGOr" style="padding-right: 17px;">
+  <div class=" modal-dialog-centered w-50 c-main m-auto">
+    <div class="modal-content border-dashed-4px-main">
+      <div class="modal-body">
+        <app-account-form *ngIf="isAccountModal" [selectedClient]="selectedClient"  (isModalAccountFormEmit)="toggleModalAccount($event)"></app-account-form>
+    </div>
+  </div>
+</div>
+</div>
+
+ <div  *ngIf="deleteConf" class="modal fade show d-block f-up f-FiraGOr" style="padding-right: 17px;">
+   <div class="modal-dialog modal-dialog-centered w-35 c-main">
+     <div class="modal-content border-dashed-4px-main">
+       <div class="modal-body">
+          <div class="">
+            <p class="fs-14 text-center">თუ გსურთ კლიენტის წაშლა დააჭირეთ დადასტურებას</p>
+            <div class="d-flex justify-content-center">
+            <button class="btn bg-yellow c-main btn-sm fs-12" (click)="closeConfirmDelete()">უარყობა</button>
+            <button class="btn bg-main c-w btn-sm fs-12 ml-2" (click)="confDelete()">დადასტურება</button>
+            </div>
+          </div>
+       </div>
+     </div>
+   </div>
+ </div>

@@ -1,0 +1,50 @@
+* {
+  outline: none !important;
+  user-select: none;
+}
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+//  padding-bottom: $footer-height;
+  background-image: url('assets/images/Imereti_Citeli_mta.jpg');
+  background-size: cover;
+ // background: #e6eaee;
+
+
+
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+}
+
+::placeholder { /* Firefox, Chrome, Opera */
+  color: $main-color;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $main-color;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $main-color;
+}
+
+.table  {
+  td {
+  
+    border-top: 3px solid $main-color;
+  }
+}

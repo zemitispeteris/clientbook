@@ -1,0 +1,42 @@
+@import 'properties';
+
+// main
+
+@each $p, $v in $colors {
+  .#{$p} {
+    color: $v;
+  }
+}
+
+@each $p, $v in $bgColor {
+  .#{$p} {
+    background-color: $v;
+  }
+}
+
+@for $i from 1 through 100 {
+  .fs-#{$i} {
+    font-size: $i#{px};
+  }
+}
+
+@for $i from 1 through 100 {
+  .w-#{$i} {
+    width: $i#{'%'};
+  }
+}
+
+
+// responcive
+
+@each $gbp, $gbppx in $grid-breakpoints {
+  @media (min-width: $gbppx) {
+    //@each $p, $v in $display {
+    //  .#{$gbp}-#{$p} {
+    //    display: $v;
+    //  }
+    //}
+  }
+}
+
+
